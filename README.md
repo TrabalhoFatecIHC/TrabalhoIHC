@@ -20,6 +20,6 @@ Este artigo apresentou a arquitetura de um sistema web que possibilita a consult
 [2]Bootstrap. Disponível em: http://getbootstrap.com/. Acesso em: 27/02/2014
 [3] http://www.w3.org/Style/CSS/. Acesso em 28 /02/2014
 [4] Java Script. Disponível em: http://www.w3schools.com/js/DEFAULT.asp. Acesso em: 28/02/2014
-[5] API Google Maps. Disponível em: https://developers.google.com/maps/?hl=pt-br. Acesso em 2702/2014
+[5] API Google Maps. Disponível em: https://developers.google.com/maps/?hl=pt-br. Acesso em 27/02/2014
 [6] GitHub. Disponível em: https://github.com/. Acesso em: 24/03/2014
 [7] W3C. Disponível em: http://www.w3.org/. Acesso em: 04/03/2014
