@@ -58,6 +58,7 @@
 
 	var geolocation = showlocation();
 	var directionsDisplay;
+	
 	var directionsService = new google.maps.DirectionsService();
 	var map;
 
@@ -82,7 +83,9 @@
 		  directionsDisplay = new google.maps.DirectionsRenderer();
 		  var mapOptions = {
 		  zoom: 14,
-		 center: geolocation
+		  lat: -12.043333,
+        	  lng: -77.028333
+		  center: geolocation
 		  }
 
 		  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
