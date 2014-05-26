@@ -9,7 +9,6 @@
 
 <link href="http://www.raymondcamden.com/demos/2013/aug/23/brick/brick-1.0beta5.css" rel="stylesheet">
 <script src="http://www.raymondcamden.com/demos/2013/aug/23/brick/brick-1.0beta5.js"></script>
-<script src="https://dl.dropboxusercontent.com/u/48558636/files/js/hammer.js"></script>
 <link href="http://globocom.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
 <link href="http://globocom.github.io/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
 <link href="http://globocom.github.io/bootstrap/assets/css/docs.css" rel="stylesheet">
@@ -56,7 +55,7 @@
 		map.setCenter(marker.getPosition());
 	  }
 
-	var geo = showlocation();
+	var geolocation = showlocation();
 	var directionsDisplay;
 	
 	var directionsService = new google.maps.DirectionsService();
@@ -84,7 +83,7 @@
 		  var mapOptions = {
 		  zoom: 14,
 	
-		  center: geo
+		  center: geolocation
 		  }
 
 		  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
