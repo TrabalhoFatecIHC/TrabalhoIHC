@@ -56,7 +56,7 @@
 		map.setCenter(marker.getPosition());
 	  }
 
-	var geolocation = showlocation();
+	var geo = showlocation();
 	var directionsDisplay;
 	
 	var directionsService = new google.maps.DirectionsService();
@@ -84,7 +84,7 @@
 		  var mapOptions = {
 		  zoom: 14,
 	
-		  center: geolocation
+		  center: geo
 		  }
 
 		  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
