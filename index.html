@@ -59,8 +59,10 @@ html, body{
      
     var latLong = new google.maps.LatLng(lat, lon);
      
+      var image = 'http://centroeventosvg.com.br/images/marcador2.png';
       var marker = new google.maps.Marker({
           position: latLong
+           icon: image
       });      
          
       marker.setMap(map);
