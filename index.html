@@ -47,20 +47,28 @@ html, body{
     </style>
 	
 	<script>
-	var x=document.getElementById("demo");
-function getLocation()
-  {
-  if (navigator.geolocation)
-    {
-    navigator.geolocation.WatchPosition(showPosition);
+	
+  function showlocation() { 
+         navigator.geolocation.getCurrentPosition(callback);
+      }
+     
+    function callback(position) {
+     
+    var lat = position.coords.latitude;
+    var lon = position.coords.longitude;
+     
+    var latLong = new google.maps.LatLng(lat, lon);
+     
+      var marker = new google.maps.Marker({
+          position: latLong
+      });      
+         
+      marker.setMap(map);
+    map.setZoom(8);
+    map.setCenter(marker.getPosition());
     }
-  else{x.innerHTML="Geolocation is not supported by this browser.";}
-  }
-function showPosition(position)
-  {
-  x.innerHTML="Latitude: " + position.coords.latitude + 
-  "<br>Longitude: " + position.coords.longitude;	
-  }
+
+    var geolocation = showlocation();
   
 		var directionsDisplay;
 		var directionsService = new google.maps.DirectionsService();
@@ -214,7 +222,7 @@ document.addEventListener('DOMComponentsLoaded', function(){
           <option value="#">200</option>
           <option value="#">237</option>
         </select>
-        <button onclick="getLocation()">Enviar informação</button>
+        <button class="btn btn-primary " type="button" onclick="javascript:showlocation()">Check in</button>
         </div>
       </div>
        </div>
