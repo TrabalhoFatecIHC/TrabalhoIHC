@@ -19,11 +19,11 @@
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
     
 <style>
-	html, body{
+html, body{
 		height: 100%;
 		
-	}
-	
+}
+
     #map-canvas{
 	top:20px;
     width: 100%;
@@ -31,101 +31,103 @@
     border: 1px solid black;
     float: left;
     }
+
+    #homepage{
+      text-align: center;
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+
+    #intro{
+      margin-top: 30px;
+      font-size: 25px;
+      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
 	
     </style>
 	
 	<script>
+	var x=document.getElementById("demo");
+function getLocation()
+  {
+  if (navigator.geolocation)
+    {
+    navigator.geolocation.WatchPosition(showPosition);
+    }
+  else{x.innerHTML="Geolocation is not supported by this browser.";}
+  }
+function showPosition(position)
+  {
+  x.innerHTML="Latitude: " + position.coords.latitude + 
+  "<br>Longitude: " + position.coords.longitude;	
+  }
+  
+		var directionsDisplay;
+		var directionsService = new google.maps.DirectionsService();
+		var map;
 
-	
-		function showlocation() { 
-			   navigator.geolocation.getCurrentPosition(callback);
-			}
-		 
-		function callback(position) {
-		 
-		var lat = position.coords.latitude;
-		var lon = position.coords.longitude;
-		 
-		var latLong = new google.maps.LatLng(lat, lon);
-		 
-			var marker = new google.maps.Marker({
-					position: latLong
-			});      
-				 
-			marker.setMap(map);
-		map.setZoom(8);
-		map.setCenter(marker.getPosition());
-	  }
-
-	var geolocation = showlocation();
-	var directionsDisplay;
-	
-	var directionsService = new google.maps.DirectionsService();
-	var map;
-
-	var origem = new google.maps.LatLng();
-	var destino = new google.maps.LatLng();
+    var origem = new google.maps.LatLng();
+    var destino = new google.maps.LatLng();
 
 	var origem204 = new google.maps.LatLng(-23.202996,-45.783886);
 	var destino204 = new google.maps.LatLng(-23.178807,-45.889498);
 
-	var origem341 = new google.maps.LatLng(-23.213563,-45.804684);
-	var destino341 = new google.maps.LatLng(-23.178807,-45.889498);
+    var origem341 = new google.maps.LatLng(-23.213563,-45.804684);
+    var destino341 = new google.maps.LatLng(-23.178807,-45.889498);
 
-	var origem200 = new google.maps.LatLng(-23.152307,-45.782883);
-	var destino200 = new google.maps.LatLng(-23.178807,-45.889498);
-
-	var origem237 = new google.maps.LatLng(-23.202996,-45.783886);
-	var destino237 = new google.maps.LatLng(-23.221737,-45.906581);
+    var origem200 = new google.maps.LatLng(-23.152307,-45.782883);
+    var destino200 = new google.maps.LatLng(-23.178807,-45.889498);
+    
+    var origem237 = new google.maps.LatLng(-23.202996,-45.783886);
+    var destino237 = new google.maps.LatLng(-23.221737,-45.906581);
 
 
 		function initialize() {
 
 		  directionsDisplay = new google.maps.DirectionsRenderer();
 		  var mapOptions = {
-		  zoom: 14,
-	
-		  center: geolocation
+			zoom: 14,
+			center: destino204
 		  }
 
 		  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 		  directionsDisplay.setMap(map);
 
-	  var marker = new google.maps.Marker({
-	  position: geolocation,
-	  map: map,
-	  title: 'Avenida Pedro Friggi at 12:49'
-	  });
+      var marker = new google.maps.Marker({
+      position: origem200,
+      map: map,
+      title: 'Avenida Pedro Friggi at 12:49'
+      });
 
 
-	}
+		}
 
 		function calcRoute() {
-	      var line = document.getElementById('numOnibus').value;
+      var line = document.getElementById('numOnibus').value;
 		  var selectedMode = "TRANSIT";
 		  
-	  if (document.getElementById('numOnibus').value == '204') {
-		origem = origem204;
-		destino = destino204;
-	  };
-	  if (document.getElementById('numOnibus').value == '341') {
-		origem = origem341;
-		destino = destino341;
-	  };
-	  if (document.getElementById('numOnibus').value == '200') {
-		origem = origem200;
-		destino = destino200;
-	  };
-	  if (document.getElementById('numOnibus').value == '237') {
-		origem = origem237;
-		destino = destino237;
-	  };
+      if (document.getElementById('numOnibus').value == '204') {
+        origem = origem204;
+        destino = destino204;
+      };
+      if (document.getElementById('numOnibus').value == '341') {
+        origem = origem341;
+        destino = destino341;
+      };
+      if (document.getElementById('numOnibus').value == '200') {
+        origem = origem200;
+        destino = destino200;
+      };
+      if (document.getElementById('numOnibus').value == '237') {
+        origem = origem237;
+        destino = destino237;
+      };
 
-	  var request = {
-		origin: origem,
-		destination: destino,
-		travelMode: google.maps.TravelMode[selectedMode]
-	  };
+      var request = {
+        origin: origem,
+        destination: destino,
+        travelMode: google.maps.TravelMode[selectedMode]
+      };
 
 		  directionsService.route(request, function(response, status) {
 			if (status == google.maps.DirectionsStatus.OK) {
@@ -152,9 +154,10 @@ document.addEventListener('DOMComponentsLoaded', function(){
 });	
 </script>
 
-</head>
+<script>
 
-<body>
+</script>
+
 
 <x-layout>
      <div class="navbar navbar-inverse navbar-fixed-top">
@@ -165,10 +168,12 @@ document.addEventListener('DOMComponentsLoaded', function(){
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="index.html" >Trabalho de IHC</a>
+          <a class="brand" href="index.html">Trabalho de IHC</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="home"><a href="index.html">Início</a></li>
+              <li class="check"><a href="index.html">Check-in</a></li>
+              <li class="local"><a href="index.html">Localizar</a></li>
               <li><a href="horarios.html">Horários</a></li>		  
             </ul>
           </div>
@@ -176,12 +181,51 @@ document.addEventListener('DOMComponentsLoaded', function(){
       </div>
     </div>
     <x-deck id="mainDeck" selected-index="0">
+    
+    <x-card>
+    <div class="countainer">
+      <div id="homepage">
+      <img class="onibus-img" src="http://knowtec.com/wp-content/uploads/2013/07/onibus.png" title="Logo: Ônibus" alt="Logo: Ônibus" height="200" width="200">
+      <p class="lead"></p>
+      <p id="intro">
+        Quer saber a localização de algum ônibus? Faça uma busca.
+      </p>
+      <p id="intro">
+        Está em algum ônibus? Ajude outras pessoas. Faça um check-in.
+      </p>
+    </div>
+    </div>
+
+  </x-card>
+
+   <x-card>
+     <div class="container">
+      <div class="row">
+        <div class="span3">
+         
+         <h3>Check-in</h3><br />
+        
+        <p id="demo">Nos diga qual ônibus está para ajudarmos outras pessoas.</p>
+        
+        <select onChange="window.location.href=this.value" class="span3">
+          <option>Selecione</option>
+          <option value="#">204</option>
+          <option value="#">341</option>
+          <option value="#">200</option>
+          <option value="#">237</option>
+        </select>
+        <button onclick="getLocation()">Enviar informação</button>
+        </div>
+      </div>
+       </div>
+  </x-card>
+
     <x-card>
        
-		<div class="container">
-		<div class="row"> 
+	<div class="container">
+    <div class="row"> 
         <div class="span3">     
-			<h3>Linha de Ônibus</h3><br />
+			<h3>Localizar ônibus</h3><br />
 			<select id="numOnibus" onchange="calcRoute();">
 				<option>Selecione</option>
 				<option value="204">204</option>
@@ -190,18 +234,6 @@ document.addEventListener('DOMComponentsLoaded', function(){
 				<option value="237">237</option>
 			</select>
 		
-		<!------PESQUISA POR VOZ------->
-		<input type="text" x-webkit-speech />
-		<!--input id="search" type="text" name="q" value="" maxlength="128" speech="speech" x-webkit-speech="x-webkit-speech" x-webkit-grammar="builtin:translate" lang="pt-br" onclick="this.value = &quot; &quot;" onwebkitspeechchange="this.form.submit();" autocomplete="off"-->
-		
-		
-	     <button class="btn btn-primary " type="button" onclick="javascript:showlocation()">Check in</button>	
-			
-				<!--p>Latitude:</p> <span id="latitude"></span>       
- 
-               <!--p> Longitude:</p> <span id="longitude"></span-->
-				
-				
 		
         </div>
 		
@@ -217,7 +249,7 @@ document.addEventListener('DOMComponentsLoaded', function(){
 			<div class="row">
 			  <div class="span3">
 			   
-				 <h3>Linha de Ônibus</h3><br />
+				 <h3>Horários</h3><br />
 				
 				<select onChange="window.location.href=this.value" class="span3">
 					<option>Selecione</option>
@@ -226,7 +258,6 @@ document.addEventListener('DOMComponentsLoaded', function(){
 					<option value="200.html">200</option>
 					<option value="237.html">237</option>
 				</select>
-
 			  </div>
 			</div>
 			 </div>
@@ -255,7 +286,3 @@ document.addEventListener('DOMComponentsLoaded', function(){
     <script src="http://globocom.github.io/bootstrap/assets/js/bootstrap-typeahead.js"></script>
     <script src="http://globocom.github.io/bootstrap/assets/js/bootstrap-affix.js"></script>
     <script src="http://globocom.github.io/bootstrap/assets/js/application.js"></script>
-	
-</body>
-
-</html>
